@@ -1,45 +1,31 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Trainapp {
+public class UseCase3TrainConsistMgmt {
 
     public static void main(String[] args) {
 
-        // Display welcome banner
-        System.out.println("========================================");
-        System.out.println("=== Train Consist Management App ===");
-        System.out.println("========================================\n");
+        System.out.println("======================================");
+        System.out.println("UC3 - Track Unique Bogie IDs");
+        System.out.println("======================================\n");
 
-        // Create a dynamic list to store train bogies
-        List<String> trainConsist = new ArrayList<>();
+        // Create a Set to store unique bogie IDs
+        Set<String> bogies = new HashSet<>();
 
-        // UC1: Initialization
-        System.out.println("Train initialized successfully...");
-        System.out.println("Initial number of bogies: " + trainConsist.size());
+        // ---- ADD IDs (including duplicates) ----
+        bogies.add("BG101");
+        bogies.add("BG102");
+        bogies.add("BG103");
+        bogies.add("BG104");
 
-        // UC2: Add passenger bogies
-        System.out.println("\nAdding passenger bogies...");
-        trainConsist.add("Sleeper");
-        trainConsist.add("AC Chair");
-        trainConsist.add("First Class");
+        // Duplicate entries (ignored automatically)
+        bogies.add("BG101");
+        bogies.add("BG102");
 
-        // Display updated consist
-        System.out.println("Current train consist: " + trainConsist);
-
-        // Check if a bogie exists
-        String searchBogie = "AC Chair";
-        if (trainConsist.contains(searchBogie)) {
-            System.out.println(searchBogie + " bogie is present in the train.");
-        } else {
-            System.out.println(searchBogie + " bogie is NOT present.");
+        // ---- DISPLAY UNIQUE BOGIE IDs ----
+        System.out.println("Unique Bogie IDs in Train:");
+        for (String bogie : bogies) {
+            System.out.println(bogie);
         }
-
-        // Remove a bogie
-        System.out.println("\nRemoving a bogie (Sleeper)...");
-        trainConsist.remove("Sleeper");
-
-        // Final state
-        System.out.println("Final train consist: " + trainConsist);
-        System.out.println("Final number of bogies: " + trainConsist.size());
     }
 }
