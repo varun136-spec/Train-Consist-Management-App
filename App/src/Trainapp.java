@@ -1,45 +1,47 @@
-import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.*;
+import java.util.stream.*;
+
+class GoodsBogie {
+    String type;
+    String cargo;
+
+    public GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+}
 
 public class Trainapp {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        // List of goods bogies
+        List<GoodsBogie> bogies = new ArrayList<>();
 
-        // Input
-        System.out.print("Enter Train ID: ");
-        String trainId = sc.nextLine();
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        bogies.add(new GoodsBogie("Rectangular", "Coal"));
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
 
-        System.out.print("Enter Cargo Code: ");
-        String cargoCode = sc.nextLine();
+        // Safety validation using allMatch()
+        boolean isSafe = bogies.stream()
+                .allMatch(b ->
+                        !b.getType().equals("Cylindrical") ||
+                                b.getCargo().equals("Petroleum")
+                );
 
-        // Regex patterns
-        String trainPattern = "TRN-\\d{4}";
-        String cargoPattern = "PET-[A-Z]{2}";
-
-        // Compile patterns
-        Pattern p1 = Pattern.compile(trainPattern);
-        Pattern p2 = Pattern.compile(cargoPattern);
-
-        // Create matchers
-        Matcher m1 = p1.matcher(trainId);
-        Matcher m2 = p2.matcher(cargoCode);
-
-        // Validation
-        if (m1.matches()) {
-            System.out.println("Valid Train ID");
+        // Output
+        if (isSafe) {
+            System.out.println("Train is SAFE");
         } else {
-            System.out.println("Invalid Train ID");
+            System.out.println("Train is NOT SAFE");
         }
-
-        if (m2.matches()) {
-            System.out.println("Valid Cargo Code");
-        } else {
-            System.out.println("Invalid Cargo Code");
-        }
-
-        sc.close();
     }
 }
