@@ -13,13 +13,33 @@ public class Trainapp {
         // Create a dynamic list to store train bogies
         List<String> trainConsist = new ArrayList<>();
 
-        // Display initial consist information
+        // UC1: Initialization
         System.out.println("Train initialized successfully...");
-
-        // Display initial bogie count
         System.out.println("Initial number of bogies: " + trainConsist.size());
 
-        // Display current state of the train
+        // UC2: Add passenger bogies
+        System.out.println("\nAdding passenger bogies...");
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC Chair");
+        trainConsist.add("First Class");
+
+        // Display updated consist
         System.out.println("Current train consist: " + trainConsist);
+
+        // Check if a bogie exists
+        String searchBogie = "AC Chair";
+        if (trainConsist.contains(searchBogie)) {
+            System.out.println(searchBogie + " bogie is present in the train.");
+        } else {
+            System.out.println(searchBogie + " bogie is NOT present.");
+        }
+
+        // Remove a bogie
+        System.out.println("\nRemoving a bogie (Sleeper)...");
+        trainConsist.remove("Sleeper");
+
+        // Final state
+        System.out.println("Final train consist: " + trainConsist);
+        System.out.println("Final number of bogies: " + trainConsist.size());
     }
 }
