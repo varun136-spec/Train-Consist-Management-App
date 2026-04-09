@@ -1,32 +1,28 @@
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Trainapp {
 
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC5 - Preserve Insertion Order of Bogies");
+        System.out.println("UC6 - Map Bogie to Capacity (HashMap)");
         System.out.println("======================================\n");
 
-        // LinkedHashSet preserves order and ensures uniqueness
-        Set<String> formation = new LinkedHashSet<>();
+        // HashMap stores bogie ID -> capacity
+        Map<String, Integer> capacityMap = new HashMap<>();
 
-        // ---- ADD bogies (including duplicates) ----
-        formation.add("Engine");
-        formation.add("BG101");
-        formation.add("BG102");
-        formation.add("BG103");
-        formation.add("Guard");
+        // ---- INSERT bogie capacities ----
+        capacityMap.put("BG101", 72);   // Sleeper
+        capacityMap.put("BG102", 54);   // AC Chair
+        capacityMap.put("BG103", 24);   // First Class
+        capacityMap.put("GD201", 100);  // Goods bogie
 
-        // Duplicate entries (ignored automatically)
-        formation.add("BG101");
-        formation.add("BG102");
-
-        // ---- DISPLAY final train formation ----
-        System.out.println("Final Train Formation:");
-        for (String bogie : formation) {
-            System.out.println(bogie);
+        // ---- DISPLAY bogie capacities ----
+        System.out.println("Bogie Capacity Details:");
+        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
+            System.out.println("Bogie ID: " + entry.getKey() +
+                    " -> Capacity: " + entry.getValue());
         }
     }
 }
