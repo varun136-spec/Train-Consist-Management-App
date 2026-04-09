@@ -1,44 +1,32 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Trainapp {
 
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC4 - Maintain Ordered Bogie Consist");
+        System.out.println("UC5 - Preserve Insertion Order of Bogies");
         System.out.println("======================================\n");
 
-        // Create a LinkedList
-        List<String> trainConsist = new LinkedList<>();
+        // LinkedHashSet preserves order and ensures uniqueness
+        Set<String> formation = new LinkedHashSet<>();
 
-        // ---- ADD bogies in sequence ----
-        trainConsist.add("Engine");
-        trainConsist.add("BG101");
-        trainConsist.add("BG102");
-        trainConsist.add("BG103");
-        trainConsist.add("Guard");
+        // ---- ADD bogies (including duplicates) ----
+        formation.add("Engine");
+        formation.add("BG101");
+        formation.add("BG102");
+        formation.add("BG103");
+        formation.add("Guard");
 
-        // ---- DISPLAY initial consist ----
-        System.out.println("Initial Train Consist:");
-        System.out.println(trainConsist);
+        // Duplicate entries (ignored automatically)
+        formation.add("BG101");
+        formation.add("BG102");
 
-        // ---- INSERT at specific position ----
-        trainConsist.add(2, "BG105");
-
-        System.out.println("\nAfter inserting BG105 at position 2:");
-        System.out.println(trainConsist);
-
-        // ---- REMOVE from front ----
-        trainConsist.remove(0);
-
-        System.out.println("\nAfter removing front (Engine):");
-        System.out.println(trainConsist);
-
-        // ---- REMOVE from rear ----
-        trainConsist.remove(trainConsist.size() - 1);
-
-        System.out.println("\nAfter removing rear (Guard):");
-        System.out.println(trainConsist);
+        // ---- DISPLAY final train formation ----
+        System.out.println("Final Train Formation:");
+        for (String bogie : formation) {
+            System.out.println(bogie);
+        }
     }
 }
