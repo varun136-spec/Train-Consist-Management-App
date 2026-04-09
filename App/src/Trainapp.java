@@ -1,8 +1,9 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Trainapp {
 
-    // Inner class to represent a Bogie
+    // Reusing Bogie class
     static class Bogie {
         String id;
         int capacity;
@@ -21,7 +22,7 @@ public class Trainapp {
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC7 - Sort Bogies by Capacity");
+        System.out.println("UC8 - Filter Passenger Bogies (Streams)");
         System.out.println("======================================\n");
 
         // Create list of bogies
@@ -32,24 +33,17 @@ public class Trainapp {
         bogies.add(new Bogie("BG103", 24));
         bogies.add(new Bogie("BG104", 60));
 
-        // ---- DISPLAY UNSORTED ----
-        System.out.println("Before Sorting:");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
+        // ---- DISPLAY ALL ----
+        System.out.println("All Bogies:");
+        bogies.forEach(System.out::println);
 
-        // ---- SORT using Comparator (by capacity) ----
-        Collections.sort(bogies, new Comparator<Bogie>() {
-            @Override
-            public int compare(Bogie b1, Bogie b2) {
-                return b1.capacity - b2.capacity; // ascending
-            }
-        });
+        // ---- FILTER (capacity > 50) ----
+        List<Bogie> highCapacity = bogies.stream()
+                .filter(b -> b.capacity > 50)
+                .collect(Collectors.toList());
 
-        // ---- DISPLAY SORTED ----
-        System.out.println("\nAfter Sorting (by Capacity):");
-        for (Bogie b : bogies) {
-            System.out.println(b);
-        }
+        // ---- DISPLAY FILTERED ----
+        System.out.println("\nHigh Capacity Bogies (>50):");
+        highCapacity.forEach(System.out::println);
     }
 }
